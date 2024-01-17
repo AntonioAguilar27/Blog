@@ -1,11 +1,12 @@
 <?php  
-session_start();
 
 if(isset($_POST['submit'])){
 
+    require_once 'includes/conexion.php';
+    session_start();
     // recoger los valores del formulario
     $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false ;
-    $apellido = isset($_POST['apellido']) ? $_POST['apellido'] : false ;
+    $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : false ;
     $email = isset($_POST['email']) ? $_POST['email'] : false ;
     $password = isset($_POST['password']) ? $_POST['password'] : false ;
 
@@ -24,7 +25,7 @@ if(isset($_POST['submit'])){
         $errores['nombre'] = "El nombre es invalido";
     }
     // VALIDAR APELLIDO
-    if(!empty($apellido) && !is_numeric($apellido) && !preg_match("/[0-9]/", $apellido)){
+    if(!empty($apellidos) && !is_numeric($apellidos) && !preg_match("/[0-9]/", $apellidos)){
         $apellido_validado = true;
     } else {
         $apellido_validado = false;
@@ -51,12 +52,26 @@ if(isset($_POST['submit'])){
     // registro 
 
     $guardar_usuario = false;
+    $password = '';
     if(count($errores) ==0){
         $guardar_usuario = true;
+
+        // cifrar la contraseña
+        $opciones = ['cost' => 12,];
+        $password_segura= password_hash($password, PASSWORD_BCRYPT, $opciones)."\n";
+
+        // INSERTAR USUARIO EN LA TABLA USUARIOS
+        $sql = "INSERT INTO  usuarios VALUES (null, '$nombre', '$apellidos', '$email', '$password_segura', CURDATE());"; 
+        $guardar = mysqli_query($db, $sql);
+
+        if ($guardar){
+            $_SESSION['completado'] = "El registro fue exitoso";
+        } else {
+            $_SESSION['errores']['general'] = "fallo al registrar";
+        }
     } else {
           $_SESSION['errores'] = $errores;
-          header('Location: index.php');
     }
-
 }
+header('Location: index.php');
 ?>
