@@ -16,16 +16,20 @@
 
             <div id="register" class="bloque">
                     <h3>Registrate</h3>
-                    <!-- Mostrar errores -->
-                    <?php if(isset($_SESSION['completado'])) : ?>
+                        <!-- Mostrar errores -->
+                    <?php if(isset($_SESSION['completado'])): ?>
                         <div class="alerta alerta-exito">
-                            <? $_SESSION['completado'] ?>
+                    <?= $_SESSION['completado']?>
                         </div>
-                    <?php elseif(isset($_SESSION['errores']['general'])) : ?>
-                        <div class="alerta alerta-error">
-                            <? $_SESSION['errores']['general'] ?>
-                        </div>
-                    <?php endif; ?> 
+                    <?php elseif(isset($_SESSION['errores']['general'])): ?>
+                    <div class="alerta alerta-exito">
+                    <?= $_SESSION['errores']['general']?>
+                    </div>   
+                    <?php elseif(isset($_SESSION['errores']['duplicado'])): ?>
+                    <div class="alerta alerta-exito">
+                    <?= $_SESSION['errores']['duplicado']?>
+                    </div>       
+                    <?php endif; ?>
                     <form action="registro.php" method="POST">
                         <label for="nombre">Nombre</label>
                         <input type="text" name="nombre">
@@ -43,7 +47,7 @@
                         <input type="password" name="password">
                         <?php echo isset($_SESSION['errores']) ? mostrarError($_SESSION['errores'], 'password') : '' ?>
 
-                        <input type="submit" value="registrar" name="submit">
+                        <input type="submit" value="registrar"  name="submit">
                     </form>
                     <?php borrarErrores(); ?> 
             </div>

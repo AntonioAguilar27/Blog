@@ -25,6 +25,19 @@ body{
     background: url(../img/cubes.png); 
 }
 
+.alerta{
+    padding: 5px;
+    font-size: 14px;
+    color: white;
+    background: green;
+    box-shadow: 0px 1px 3px #ccc;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.alerta-error{
+    background: red;
+}
 /*  Cabecera */
 
 #cabecera {

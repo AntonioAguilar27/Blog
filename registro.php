@@ -1,8 +1,10 @@
 <?php  
 
 if(isset($_POST['submit'])){
-
+    // CONEXION A LA BD
     require_once 'includes/conexion.php';
+
+    // INICIAR SESION
     session_start();
     // recoger los valores del formulario
     $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false ;
@@ -29,7 +31,7 @@ if(isset($_POST['submit'])){
         $apellido_validado = true;
     } else {
         $apellido_validado = false;
-        $errores['apellido'] = "El apellido es invalido";
+        $errores['apellidos'] = "El apellido es invalido";
     }
     // VALIDAR CORREO 
 
@@ -64,10 +66,15 @@ if(isset($_POST['submit'])){
         $sql = "INSERT INTO  usuarios VALUES (null, '$nombre', '$apellidos', '$email', '$password_segura', CURDATE());"; 
         $guardar = mysqli_query($db, $sql);
 
-        if ($guardar){
-            $_SESSION['completado'] = "El registro fue exitoso";
-        } else {
-            $_SESSION['errores']['general'] = "fallo al registrar";
+        if($guardar){
+            $_SESSION['completado'] = "El registro se ha completado con éxito";
+        }else {
+            // error 1060 = entrada duplicada
+            if(mysqli_errno($db) == 1062){
+                $_SESSION['errores']['duplicado'] = "Ya existe un usuario con ese email";
+            }else{           
+                $_SESSION['errores']['general'] = "Fallo al guardar el usuario!!";
+            }
         }
     } else {
           $_SESSION['errores'] = $errores;
