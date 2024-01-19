@@ -60,7 +60,7 @@ if(isset($_POST['submit'])){
 
         // cifrar la contraseña
         $opciones = ['cost' => 12,];
-        $password_segura= password_hash($password, PASSWORD_BCRYPT, $opciones)."\n";
+        $password_segura= password_hash($password, PASSWORD_BCRYPT, $opciones);
 
         // INSERTAR USUARIO EN LA TABLA USUARIOS
         $sql = "INSERT INTO  usuarios VALUES (null, '$nombre', '$apellidos', '$email', '$password_segura', CURDATE());"; 
