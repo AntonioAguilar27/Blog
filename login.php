@@ -34,7 +34,7 @@ if(isset($_POST)){    // recoger datos del formulario
             $_SESSION['usuario'] = $usuario;
 
             if(isset($_SESSION['error_login'])){
-               session_unset($_SESSION['error_login']);
+               unset($_SESSION['error_login']);
             }
         } else {
             // si algo falla se envia una sesion con el fallo

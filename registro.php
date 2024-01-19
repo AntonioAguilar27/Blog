@@ -54,7 +54,7 @@ if(isset($_POST['submit'])){
     // registro 
 
     $guardar_usuario = false;
-    $password = '';
+    
     if(count($errores) ==0){
         $guardar_usuario = true;
 
