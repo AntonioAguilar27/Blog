@@ -253,3 +253,11 @@ input[type="submit"],
     padding: 15px;
     text-align: center;
 }
+
+#login{
+    margin-top: 0;
+}
+
+#usuario-logueado {
+    margin-top: 0;
+}

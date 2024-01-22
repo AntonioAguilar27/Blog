@@ -12,9 +12,10 @@
                 while($entrada = mysqli_fetch_assoc($entradas)) :
         ?>
             <article class="entrada">
+                <!-- <?php var_dump($entrada);?> -->
                 <h2><?=$entrada['titulo']?></h2>
                     <p>
-                        <?=$entrada['descripcion']?>
+                        <?=substr($entrada['descripcion'],0,255). "..."?>
                     </p>
             </article>
 
