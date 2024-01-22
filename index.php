@@ -4,30 +4,27 @@
         <!-- Caja principal -->
 
 <div id="principal">
-<h1>Ultimas entradas</h1>
-<article class="entrada">
-    <h2>titulo de la entrada</h2>
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa numquam itaque eos corrupti nisi cumque incidunt, excepturi tenetur. Consequatur consectetur blanditiis cupiditate voluptas dignissimos, optio perferendis esse laborum id sit.
-    </p>
-</article>
+        <h1>Ultimas entradas</h1>
 
-<article class="entrada">
-    <h2>titulo de la entrada</h2>
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa numquam itaque eos corrupti nisi cumque incidunt, excepturi tenetur. Consequatur consectetur blanditiis cupiditate voluptas dignissimos, optio perferendis esse laborum id sit.
-    </p>
-</article>
+        <?php
+            $entradas = conseguirUltimasEntradas($db);
+            if (!empty($entradas)) :
+                while($entrada = mysqli_fetch_assoc($entradas)) :
+        ?>
+            <article class="entrada">
+                <h2><?=$entrada['titulo']?></h2>
+                    <p>
+                        <?=$entrada['descripcion']?>
+                    </p>
+            </article>
 
-<article class="entrada">
-    <h2>titulo de la entrada</h2>
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa numquam itaque eos corrupti nisi cumque incidunt, excepturi tenetur. Consequatur consectetur blanditiis cupiditate voluptas dignissimos, optio perferendis esse laborum id sit.
-    </p>
-</article>
-<div id="ver-todas">
-    <a href="">Ver todas las entradas</a>
-</div>
+        <?php 
+                endwhile;
+            endif;
+        ?>
+        <div id="ver-todas">
+            <a href="">Ver todas las entradas</a>
+        </div>
 </div>
 
     <!-- Footer -->

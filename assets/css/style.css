@@ -170,6 +170,22 @@ input[type="submit"],
     padding: 5px;
 }
 
+.boton{
+    width: 150px;
+    text-align: center;
+}
+
+.boton-naranja {
+     background: orange;
+}
+
+.boton-verde {
+     background: green;
+}
+
+.boton-rojo {
+    background: red;
+}
 /*PRINCIPAL*/
 
 #principal {
