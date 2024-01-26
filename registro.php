@@ -80,5 +80,5 @@ if(isset($_POST['submit'])){
           $_SESSION['errores'] = $errores;
     }
 }
-header('Location: index.php');
+header("Location: includes/inicio.php");
 ?>

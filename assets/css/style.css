@@ -146,6 +146,12 @@ body{
     margin-bottom: 15px;
 }
 
+.container{
+    max-width: 40%;
+    margin-top: 20px;
+    padding-left: 450px;
+}
+
 label,
 input[type="text"],
 input[type="email"],
@@ -267,4 +273,13 @@ input[type="submit"],
 
 #usuario-logueado {
     margin-top: 0;
+}
+
+
+.div-imagen-login img {
+    max-height: 150px;    
+    justify-content: center;
+    padding-left: 190px;
+    margin-bottom: 40px;
+    margin-top: 40px;
 }

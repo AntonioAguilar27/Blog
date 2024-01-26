@@ -41,13 +41,14 @@ if(isset($_POST)){    // recoger datos del formulario
             $_SESSION['error_login'] = "Login incorrecto!!";
             
         }
+        header('Location: index.php');
     } else {
         var_dump("no entro");
         // mensaje error 
         $_SESSION['error_login'] = "Login incorrecto!!";
+
+        header('Location: includes/inicio.php');
     }
 }
 
 // redireccion al index 
-
-header('Location: index.php');
